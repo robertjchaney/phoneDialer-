@@ -59,8 +59,20 @@ public class phoneDialer implements ActionListener{
         gridPanel.setLayout(GL);
         // Set a new Border of empty space with 5 pixels on all sides
         gridPanel.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
+
+        one.addActionListener(this);
+        two.addActionListener(this);
+        three.addActionListener(this);
+        four.addActionListener(this);
+        five.addActionListener(this);
+        six.addActionListener(this);
+        seven.addActionListener(this);
+        eight.addActionListener(this);
+        nine.addActionListener(this);
+        zero.addActionListener(this);
+        dash.addActionListener(this);
+
         // Add each of the new JButtons to your grid in an order that arranges them as shown in the "Project Details" section above.
-        
         gridPanel.add(one);
         gridPanel.add(two);
         gridPanel.add(three);
@@ -77,46 +89,50 @@ public class phoneDialer implements ActionListener{
         mainPanel.add(topPanel);
         // Next, add your new child panel holding the phone buttons to your main content panel
         mainPanel.add(gridPanel);
-        // Create a new JButton with the text "Dial Number" and store it as a class member variable
-        JButton dialButton = new JButton("Dial Number");
         // Set the X alignment of the JButton to Component.CENTER_ALIGNMENT.
-        dialButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        dial.setAlignmentX(Component.CENTER_ALIGNMENT);
         // Add the new JButton directly to your main JPanel under the other two child panels
-        mainPanel.add(dialButton);
+        mainPanel.add(dial);
         // Finally, call setVisible(true) on your main frame to make the window visible!
         dialerFrame.setVisible(true);
 
         // Call addActionListener() on all of your JButton objects, passing in the "this" parameter to make your main class the recipient of all action events from those buttons.
-        dialButton.addActionListener(this);
+        dial.addActionListener(this);
     }
     // Add the actionPerformed() method as defined on the ActionListener interface.
-    public void actionPerformed(ActionEvent event){
-        Object input = event.getSource();
-        // Use JOptionPane.showMessageDialog() to show the phone number currently stored in the class-level phone number String
-        JOptionPane.showMessageDialog(null, "Dialing: " + phoneNumber);
+    public void actionPerformed(ActionEvent event) {
         // Add a series of else if() statements, checking for a match on each remaining button representing a digit or dash on the keypad.
-        if(input == one)
+        Object UI = event.getSource();
+        if (UI == one)
             phoneNumber += "1";
-        else if(input == two)
+        else if (UI == two)
             phoneNumber += "2";
-        else if(input == three)
+        else if (UI == three)
             phoneNumber += "3";
-        else if(input == four)
+        else if (UI == four)
             phoneNumber += "4";
-        else if(input == five)
+        else if (UI == five)
             phoneNumber += "5";
-        else if(input == six)
+        else if (UI == six)
             phoneNumber += "6";
-        else if(input == seven)
+        else if (UI == seven)
             phoneNumber += "7";
-        else if(input == eight)
+        else if (UI == eight)
             phoneNumber += "8";
-        else if(input == nine)
+        else if (UI == nine)
             phoneNumber += "9";
-        else if(input == zero)
+        else if (UI == zero)
             phoneNumber += "0";
-        else if(input == dash)
+        else if (UI == dash)
             phoneNumber += "-";
+        else if (UI == dial)
+        {
+            JOptionPane.showMessageDialog(null, "Dialing: " + phoneNumber);
+            phoneNumber = "";
         }
 
+    
+        // Now, after appending the input, use JOptionPane.showMessageDialog() to show the phone number currently stored in the class-level phone number String
+        
+    }
     }
